@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050711">
+
+<title>my constellation ✦</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&family=Space+Mono&display=swap');
+
+:root{
+  --bg:#050711;
+  --panel:rgba(15,19,36,.72);
+  --text:#f6f1e8;
+  --muted:#a9abbc;
+  --gold:#d7b96e;
+  --gold2:#f1d99a;
+  --line:rgba(241,217,154,.16);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#050711;
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:20;
+  opacity:.05;
+
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   SKY
+========================================================= */
+
+#sky{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #151a35 0,
+      #080b18 40%,
+      #03040a 100%
+    );
+}
+
+.star{
+  position:absolute;
+
+  width:2px;
+  height:2px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  opacity:.2;
+
+  animation:
+    twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+
+  50%{
+    opacity:.9;
+    transform:scale(1.7);
+  }
+
+}
+
+.comet{
+  position:absolute;
+
+  width:1px;
+  height:100px;
+
+  background:
+    linear-gradient(
+      #fff,
+      transparent
+    );
+
+  transform:rotate(45deg);
+
+  opacity:0;
+
+  animation:
+    shoot 9s linear infinite;
+}
+
+@keyframes shoot{
+
+  0%,70%{
+    opacity:0;
+    transform:
+      translate(0,0)
+      rotate(45deg);
+  }
+
+  75%{
+    opacity:.7;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translate(-280px,280px)
+      rotate(45deg);
+  }
+
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+main{
+  position:relative;
+  z-index:1;
+}
+
+.screen{
+  min-height:100svh;
+
+  display:grid;
+  place-items:center;
+
+  padding:28px 18px;
+}
+
+.hero{
+  text-align:center;
+
+  max-width:760px;
+}
+
+.mono{
+  font:
+    10px
+    "Space Mono",
+    monospace;
+
+  letter-spacing:.28em;
+
+  text-transform:uppercase;
+
+  color:var(--gold);
+
+  opacity:.8;
+}
+
+.intro-star{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  box-shadow:
+    0 0 25px 8px
+    rgba(241,217,154,.5);
+
+  margin:
+    0 auto 34px;
+
+  animation:
+    pulse 3s infinite;
+}
+
+@keyframes pulse{
+
+  50%{
+    box-shadow:
+      0 0 40px 14px
+      rgba(241,217,154,.18);
+
+    transform:scale(1.2);
+  }
+
+}
+
+h1,
+h2,
+h3{
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-weight:500;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero h1{
+
+  font-size:
+    clamp(
+      58px,
+      15vw,
+      118px
+    );
+
+  line-height:.78;
+
+  letter-spacing:-.055em;
+
+  margin:0;
+}
+
+.hero h1 small{
+
+  display:block;
+
+  color:var(--gold2);
+
+  font-size:.35em;
+
+  letter-spacing:.02em;
+
+  line-height:1.2;
+
+  margin-top:28px;
+}
+
+.hero p{
+
+  font:
+    clamp(
+      19px,
+      4.5vw,
+      27px
+    )
+    "Cormorant Garamond",
+    serif;
+
+  color:#d8d4cc;
+
+  line-height:1.45;
+
+  max-width:570px;
+
+  margin:34px auto;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn{
+
+  border:
+    1px solid
+    rgba(241,217,154,.35);
+
+  background:
+    rgba(241,217,154,.07);
+
+  color:var(--text);
+
+  padding:14px 22px;
+
+  border-radius:999px;
+
+  font:
+    11px
+    "Space Mono",
+    monospace;
+
+  letter-spacing:.1em;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  backdrop-filter:blur(10px);
+}
+
+.btn:hover{
+
+  transform:translateY(-2px);
+
+  background:
+    rgba(241,217,154,.14);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section{
+
+  max-width:960px;
+
+  margin:auto;
+
+  padding:
+    110px 18px;
+}
+
+.head{
+
+  max-width:680px;
+
+  margin-bottom:38px;
+}
+
+.head h2{
+
+  font-size:
+    clamp(
+      44px,
+      10vw,
+      76px
+    );
+
+  line-height:.92;
+
+  margin:
+    14px 0 18px;
+}
+
+.head p{
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass{
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.018)
+    );
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:28px;
+
+  backdrop-filter:blur(12px);
+}
+
+
+/* =========================================================
+   WEIGHT SECTION
+========================================================= */
+
+.weight{
+
+  padding:25px;
+}
+
+.weight-list{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin:
+    20px 0 8px;
+}
+
+.weight button{
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#0b0e1b;
+
+  color:#c9c7c0;
+
+  border-radius:999px;
+
+  padding:11px 14px;
+
+  font:
+    11px
+    "Space Mono",
+    monospace;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.weight button.selected{
+
+  border-color:
+    rgba(241,217,154,.55);
+
+  background:
+    rgba(215,185,110,.13);
+
+  color:var(--gold2);
+
+  transform:translateY(-2px);
+}
+
+#release{
+
+  margin-top:18px;
+
+  min-height:0;
+
+  opacity:0;
+
+  transform:translateY(8px);
+
+  transition:.5s;
+
+  line-height:1.7;
+
+  color:#ddd8cf;
+}
+
+#release.show{
+
+  opacity:1;
+
+  transform:none;
+}
+
+#release strong{
+
+  color:var(--gold2);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(220px,1fr)
+    );
+
+  gap:14px;
+}
+
+.card{
+
+  padding:25px;
+
+  min-height:185px;
+
+  cursor:pointer;
+
+  transition:.35s;
+}
+
+.card:hover{
+
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(241,217,154,.32);
+}
+
+.card h3{
+
+  font-size:30px;
+
+  color:var(--gold2);
+
+  margin:
+    0 0 10px;
+}
+
+.card p{
+
+  color:#bfc1cf;
+
+  line-height:1.65;
+
+  font-size:14px;
+}
+
+.hint{
+
+  font:
+    9px
+    "Space Mono",
+    monospace !important;
+
+  color:#6e7182 !important;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+}
+
+.reveal{
+
+  display:none !important;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  padding-top:15px;
+
+  margin-top:15px;
+}
+
+.card.open .reveal{
+
+  display:block !important;
+}
+
+
+/* =========================================================
+   LETTERS
+========================================================= */
+
+.letters{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+}
+
+.letter{
+
+  padding:24px;
+
+  min-height:145px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.letter:hover{
+
+  transform:translateY(-3px);
+
+  border-color:
+    rgba(241,217,154,.35);
+}
+
+.letter .symbol{
+
+  color:var(--gold);
+
+  font-size:24px;
+}
+
+.letter h3{
+
+  font-size:28px;
+
+  margin:
+    9px 0 4px;
+}
+
+.letter small{
+
+  color:#74778a;
+}
+
+
+/* =========================================================
+   CONSTELLATION
+========================================================= */
+
+.constellation{
+
+  overflow:hidden;
+
+  position:relative;
+
+  min-height:540px;
+}
+
+.constellation svg{
+
+  width:100%;
+
+  height:540px;
+
+  display:block;
+}
+
+.line{
+
+  stroke:
+    rgba(241,217,154,.5);
+
+  stroke-width:1;
+
+  fill:none;
+
+  stroke-dasharray:500;
+
+  stroke-dashoffset:500;
+
+  transition:
+    stroke-dashoffset 2s;
+}
+
+.constellation.show .line{
+
+  stroke-dashoffset:0;
+}
+
+.cstar{
+
+  fill:white;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(241,217,154,.9)
+    );
+
+  opacity:.2;
+
+  transition:1s;
+
+  cursor:pointer;
+}
+
+.constellation.show .cstar{
+
+  opacity:1;
+}
+
+.constellation text{
+
+  fill:var(--gold2);
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+}
+
+.starhint{
+
+  text-align:center;
+
+  padding:
+    0 20px 25px;
+
+  color:#777a8a;
+
+  font:
+    9px
+    "Space Mono",
+    monospace;
+
+  letter-spacing:.15em;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final{
+
+  text-align:center;
+
+  padding-bottom:130px;
+}
+
+.final h2{
+
+  font-size:
+    clamp(
+      49px,
+      11vw,
+      88px
+    );
+
+  line-height:.9;
+}
+
+.final p{
+
+  max-width:650px;
+
+  margin:22px auto;
+
+  font:
+    22px/1.65
+    "Cormorant Garamond",
+    serif;
+
+  color:#ddd8cf;
+}
+
+.signature{
+
+  font:
+    27px
+    "Cormorant Garamond",
+    serif;
+
+  color:var(--gold);
+
+  margin-top:42px;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider{
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--line),
+      transparent
+    );
+
+  max-width:500px;
+
+  margin:30px auto;
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+#music{
+
+  position:fixed;
+
+  z-index:30;
+
+  right:16px;
+
+  bottom:16px;
+
+  width:46px;
+
+  height:46px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#0b0e1ddd;
+
+  color:var(--gold2);
+
+  cursor:pointer;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:40;
+
+  background:
+    rgba(2,3,8,.8);
+
+  backdrop-filter:blur(16px);
+
+  place-items:center;
+
+  padding:18px;
+}
+
+.modal.show{
+
+  display:grid;
+}
+
+.modalbox{
+
+  max-width:670px;
+
+  max-height:86svh;
+
+  overflow:auto;
+
+  padding:30px;
+
+  border-radius:28px;
+
+  background:#0d1122;
+
+  border:
+    1px solid
+    var(--line);
+
+  box-shadow:
+    0 30px 100px #000b;
+}
+
+.close{
+
+  float:right;
+
+  border:0;
+
+  background:none;
+
+  color:#aaa;
+
+  font-size:27px;
+
+  cursor:pointer;
+}
+
+.modalbox h2{
+
+  font-size:44px;
+
+  color:var(--gold2);
+
+  margin:
+    0 0 18px;
+}
+
+.modalbox p{
+
+  font:
+    21px/1.65
+    "Cormorant Garamond",
+    serif;
+
+  color:#e2ded6;
+}
+
+
+/* =========================================================
+   HIDDEN STAR MESSAGES
+========================================================= */
+
+.hidden-note{
+
+  cursor:pointer;
+}
+
+.note-pop{
+
+  position:fixed;
+
+  z-index:50;
+
+  left:50%;
+
+  bottom:30px;
+
+  transform:
+    translate(-50%,20px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  background:#11162a;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:999px;
+
+  padding:13px 18px;
+
+  color:var(--gold2);
+
+  font:
+    11px
+    "Space Mono",
+    monospace;
+
+  transition:.4s;
+
+  white-space:nowrap;
+}
+
+.note-pop.show{
+
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  section{
+    padding:
+      85px 15px;
+  }
+
+  .letters{
+
+    grid-template-columns:1fr;
+  }
+
+  .constellation,
+  .constellation svg{
+
+    min-height:430px;
+
+    height:430px;
+  }
+
+  .modalbox{
+
+    padding:24px;
+  }
+
+  .modalbox p{
+
+    font-size:19px;
+  }
+
+  .hero h1{
+
+    font-size:64px;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div id="sky"></div>
+
+
+<!-- MUSIC -->
+
+<button id="music">♪</button>
+
+<div
+  id="notePop"
+  class="note-pop">
+</div>
+
+
+<main>
+
+
+<!-- =========================================================
+     OPENING
+========================================================= -->
+
+<section class="screen">
+
+  <div class="hero">
+
+    <div class="intro-star"></div>
+
+    <div class="mono">
+      a little universe, made for one person
+    </div>
+
+
+    <h1>
+
+      for you
+
+      <small>
+        my constellation with a golden heart
+      </small>
+
+    </h1>
+
+
+    <p>
+
+      Somewhere between all the stars,
+      <br>
+
+      there's one I keep looking for.
+
+    </p>
+
+
+    <button
+      class="btn"
+      onclick="go('weight')">
+
+      enter quietly&nbsp; ↓
+
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PUT IT DOWN
+========================================================= -->
+
+<section id="weight">
+
+  <div class="head">
+
+    <div class="mono">
+      01 · you can put some of it down
+    </div>
+
+    <h2>
+      What are you carrying tonight?
+    </h2>
+
+    <p>
+
+      You don't have to explain it.
+
+      Just choose whatever feels familiar.
+
+      You can choose more than one.
+
+    </p>
+
+  </div>
+
+
+  <div class="glass weight">
+
+    <div class="weight-list">
+
+      <button>
+        overthinking
+      </button>
+
+      <button>
+        guilt
+      </button>
+
+      <button>
+        loneliness
+      </button>
+
+      <button>
+        expectations
+      </button>
+
+      <button>
+        regret
+      </button>
+
+      <button>
+        “I'm not enough”
+      </button>
+
+      <button>
+        “I'm a bad friend”
+      </button>
+
+      <button>
+        just... everything
+      </button>
+
+    </div>
+
+
+    <div id="release">
+
+      You've been carrying a lot.
+
+      <br><br>
+
+      <strong>
+        You don't have to carry all of it at once.
+      </strong>
+
+      <br>
+
+      Nothing has to be solved in this moment.
+
+      For now, let yourself breathe.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WHAT I SEE
+========================================================= -->
+
+<section>
+
+  <div class="head">
+
+    <div class="mono">
+      02 · if you could borrow my eyes
+    </div>
+
+    <h2>
+      Things I wish you could see about yourself.
+    </h2>
+
+    <p>
+
+      Not because I think you need to become
+      someone else.
+
+      Quite the opposite.
+
+    </p>
+
+  </div>
+
+
+  <div class="cards">
+
+
+    <div class="glass card">
+
+      <h3>
+        You care.
+      </h3>
+
+      <p>
+
+        You notice things.
+
+        You worry about people.
+
+        Sometimes you care so much that
+        you forget to leave some of that
+        kindness for yourself.
+
+      </p>
+
+    </div>
+
+
+    <div class="glass card">
+
+      <h3>
+        You make people feel seen.
+      </h3>
+
+      <p>
+
+        Being someone around whom another
+        person can feel heard is not a small thing.
+
+        It's a quiet kind of light.
+
+      </p>
+
+    </div>
+
+
+    <div class="glass card">
+
+      <h3>
+        You are allowed to be tired.
+      </h3>
+
+      <p>
+
+        You don't have to be cheerful,
+        useful, available, or okay every second
+        to still matter.
+
+      </p>
+
+    </div>
+
+
+    <div class="glass card">
+
+      <h3>
+        You are still learning.
+      </h3>
+
+      <p>
+
+        Making mistakes doesn't make your
+        entire heart bad.
+
+        You can learn, grow, apologize,
+        and still have kindness for yourself.
+
+      </p>
+
+    </div>
+
+
+    <div class="glass card">
+
+      <h3>
+        Your worst moment isn't your biography.
+      </h3>
+
+      <p>
+
+        One difficult conversation,
+        one bad day, or one mistake doesn't
+        get to write every chapter of who you are.
+
+      </p>
+
+    </div>
+
+
+    <div class="glass card">
+
+      <h3>
+        You don't have to earn your place.
+      </h3>
+
+      <p>
+
+        You don't have to perform goodness
+        perfectly for the people who genuinely
+        care about you.
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     LETTERS
+========================================================= -->
+
+<section>
+
+  <div class="head">
+
+    <div class="mono">
+      03 · letters I left here
+    </div>
+
+    <h2>
+      Open one when you need it.
+    </h2>
+
+    <p>
+      Some words are easier to find when
+      they're waiting for you.
+    </p>
+
+  </div>
+
+
+  <div class="letters">
+
+
+    <div
+      class="glass letter"
+      data-letter="alone">
+
+      <div class="symbol">
+        ✦
+      </div>
+
+      <h3>
+        when you feel alone
+      </h3>
+
+      <small>
+        there's something I want you to remember
+      </small>
+
+    </div>
+
+
+    <div
+      class="glass letter"
+      data-letter="loud">
+
+      <div class="symbol">
+        ☾
+      </div>
+
+      <h3>
+        when your mind gets loud
+      </h3>
+
+      <small>
+        read this before believing every thought
+      </small>
+
+    </div>
+
+
+    <div
+      class="glass letter"
+      data-letter="enough">
+
+      <div class="symbol">
+        ♡
+      </div>
+
+      <h3>
+        when you feel not enough
+      </h3>
+
+      <small>
+        especially on those days
+      </small>
+
+    </div>
+
+
+    <div
+      class="glass letter"
+      data-letter="bad">
+
+      <div class="symbol">
+        ✧
+      </div>
+
+      <h3>
+        after a terrible day
+      </h3>
+
+      <small>
+        you made it here
+      </small>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONSTELLATION
+========================================================= -->
+
+<section>
+
+  <div class="head">
+
+    <div class="mono">
+      04 · my constellation
+    </div>
+
+    <h2>
+      Some lights are easiest to see from far away.
+    </h2>
+
+    <p>
+
+      Tap the little stars.
+
+      I left a few things hidden around here.
+
+    </p>
+
+  </div>
+
+
+  <div
+    class="glass constellation"
+    id="constellation">
+
+
+    <svg viewBox="0 0 800 540">
+
+
+      <path
+        class="line"
+        d="
+          M115 350
+          L235 195
+          L390 285
+          L520 120
+          L650 220
+          L710 365
+          L525 420
+          L390 285
+        "
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="I hope you know how much light you bring with you."
+        cx="115"
+        cy="350"
+        r="6"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="You don't have to be okay every minute."
+        cx="235"
+        cy="195"
+        r="7"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="Yes. I'm still here. 🤍"
+        cx="390"
+        cy="285"
+        r="9"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="You are more than the things you're afraid you are."
+        cx="520"
+        cy="120"
+        r="6"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="Please be a little gentler with yourself."
+        cx="650"
+        cy="220"
+        r="7"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="You matter. Even on the quiet days."
+        cx="710"
+        cy="365"
+        r="6"
+      />
+
+
+      <circle
+        class="cstar hidden-note"
+        data-note="my constellation ✦"
+        cx="525"
+        cy="420"
+        r="6"
+      />
+
+
+      <text
+        x="400"
+        y="75"
+        text-anchor="middle"
+        font-size="31">
+
+        my constellation
+
+      </text>
+
+
+      <text
+        x="400"
+        y="485"
+        text-anchor="middle"
+        font-size="18">
+
+        with a golden heart
+
+      </text>
+
+
+    </svg>
+
+
+    <div class="starhint">
+
+      ✦ tap a star ✦
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL
+========================================================= -->
+
+<section class="final">
+
+  <div class="mono">
+    05 · before you go
+  </div>
+
+
+  <h2>
+
+    You don't have to fix
+    <br>
+
+    your whole life tonight.
+
+  </h2>
+
+
+  <div class="divider"></div>
+
+
+  <p>
+
+    Drink a little water.
+
+    Let your shoulders rest.
+
+    Take one slow breath.
+
+    Let tonight be just tonight.
+
+  </p>
+
+
+  <p>
+
+    I can't take every difficult thing
+    away from you, and I won't pretend
+    I can.
+
+    But I can remind you that you don't
+    have to face every difficult thing
+    in silence.
+
+  </p>
+
+
+  <p>
+
+    You are allowed to be tired.
+    <br>
+
+    You are allowed to be confused.
+    <br>
+
+    You are allowed to have a bad day.
+    <br>
+
+    And you are still you.
+
+  </p>
+
+
+  <p>
+
+    I wish you could see yourself for one
+    minute through the eyes of someone
+    who cares about you.
+
+  </p>
+
+
+  <p>
+
+    Maybe then you'd understand why I call you
+
+    <br><br>
+
+    <strong style="color:var(--gold2)">
+
+      my constellation with a golden heart.
+
+    </strong>
+
+  </p>
+
+
+  <div class="signature">
+
+    — someone who will keep reminding you 🤍
+
+  </div>
+
+
+  <div style="margin-top:36px">
+
+    <button
+      class="btn"
+      id="finalBtn">
+
+      I'll take it one moment at a time
+
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     LETTER MODAL
+========================================================= -->
+
+<div
+  class="modal"
+  id="modal">
+
+
+  <div class="modalbox">
+
+
+    <button
+      class="close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
+
+
+    <h2 id="modalTitle"></h2>
+
+
+    <div id="modalText"></div>
+
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   CREATE STARS
+========================================================= */
+
+const sky =
+  document.getElementById("sky");
+
+for(let i=0;i<115;i++){
+
+  const s =
+    document.createElement("div");
+
+  s.className="star";
+
+  s.style.left =
+    Math.random()*100+"%";
+
+  s.style.top =
+    Math.random()*100+"%";
+
+  s.style.animationDelay =
+    Math.random()*6+"s";
+
+  s.style.animationDuration =
+    3+Math.random()*6+"s";
+
+  sky.appendChild(s);
+}
+
+
+/* SHOOTING STARS */
+
+for(let i=0;i<3;i++){
+
+  const comet =
+    document.createElement("div");
+
+  comet.className="comet";
+
+  comet.style.left =
+    (10+Math.random()*80)+"%";
+
+  comet.style.top =
+    (5+Math.random()*45)+"%";
+
+  comet.style.animationDelay =
+    (i*5)+"s";
+
+  sky.appendChild(comet);
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function go(id){
+
+  document
+    .getElementById(id)
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   WEIGHT BUTTONS
+========================================================= */
+
+const weightButtons =
+  document.querySelectorAll(
+    ".weight button"
+  );
+
+const release =
+  document.getElementById("release");
+
+
+weightButtons.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      button.classList.toggle(
+        "selected"
+      );
+
+      const selected =
+        document.querySelectorAll(
+          ".weight button.selected"
+        );
+
+      release.classList.toggle(
+        "show",
+        selected.length>0
+      );
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+document
+  .querySelectorAll(".card")
+  .forEach(card=>{
+
+    card.addEventListener(
+      "click",
+      ()=>{
+        card.classList.toggle(
+          "open"
+        );
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   LETTER CONTENT
+========================================================= */
+
+const letters={
+
+
+  alone:{
+
+    title:
+      "when you feel alone",
+
+    text:`
+
+      <p>
+        Hey.
+      </p>
+
+      <p>
+
+        I know sometimes being surrounded
+        by people can still feel lonely.
+
+        I won't tell you to simply stop
+        feeling that way.
+
+      </p>
+
+      <p>
+
+        You don't have to become smaller,
+        quieter, easier, or less complicated
+        to deserve care.
+
+      </p>
+
+      <p>
+
+        And if tonight feels especially quiet,
+        let this little place remind you:
+
+        someone out there is thinking about you
+        with a very full heart.
+
+      </p>
+
+      <p>
+
+        You don't have to answer anything.
+
+        Just breathe.
+
+      </p>
+
+    `
+
+  },
+
+
+  loud:{
+
+    title:
+      "when your mind gets loud",
+
+    text:`
+
+      <p>
+
+        Before you believe every thought
+        your mind is giving you, pause.
+
+      </p>
+
+      <p>
+
+        A thought can feel incredibly convincing
+        and still not be the whole truth.
+
+      </p>
+
+      <p>
+
+        You don't need to solve every possibility
+        tonight.
+
+        You don't need to figure yourself out
+        in the middle of the storm.
+
+      </p>
+
+      <p>
+
+        Take the next minute.
+
+        Then the next one.
+
+        That's enough.
+
+      </p>
+
+      <p>
+
+        Your mind deserves rest too.
+
+      </p>
+
+    `
+
+  },
+
+
+  enough:{
+
+    title:
+      "when you feel not enough",
+
+    text:`
+
+      <p>
+
+        You don't have to collect enough
+        achievements, apologies, kindnesses,
+        replies, or sacrifices to qualify as
+        someone worth caring about.
+
+      </p>
+
+      <p>
+
+        You are a person, not a score.
+
+      </p>
+
+      <p>
+
+        And being imperfect doesn't cancel
+        the good you've done,
+        the kindness you've shown,
+        or the person you're still becoming.
+
+      </p>
+
+      <p>
+
+        Please don't measure your entire heart
+        using your worst day.
+
+      </p>
+
+    `
+
+  },
+
+
+  bad:{
+
+    title:
+      "after a terrible day",
+
+    text:`
+
+      <p>
+
+        So today was heavy.
+
+      </p>
+
+      <p>
+
+        That doesn't mean tomorrow has to
+        carry the exact same weight.
+
+      </p>
+
+      <p>
+
+        For tonight, you don't need a grand
+        lesson.
+
+        Rest.
+
+        Drink some water.
+
+        Let your eyes rest.
+
+        Take a little distance from everything
+        that is shouting for your attention.
+
+      </p>
+
+      <p>
+
+        You made it through today.
+
+        That's enough for today.
+
+      </p>
+
+      <p>
+
+        Tomorrow can be tomorrow.
+
+      </p>
+
+    `
+
+  }
+
+};
+
+
+/* =========================================================
+   OPEN LETTER
+========================================================= */
+
+document
+  .querySelectorAll(".letter")
+  .forEach(letter=>{
+
+    letter.addEventListener(
+      "click",
+      ()=>{
+
+        const data =
+          letters[
+            letter.dataset.letter
+          ];
+
+        document
+          .getElementById(
+            "modalTitle"
+          )
+          .textContent =
+          data.title;
+
+        document
+          .getElementById(
+            "modalText"
+          )
+          .innerHTML =
+          data.text;
+
+        document
+          .getElementById(
+            "modal"
+          )
+          .classList.add(
+            "show"
+          );
+
+      }
+    );
+
+  });
+
+
+/* CLOSE MODAL */
+
+function closeModal(){
+
+  document
+    .getElementById(
+      "modal"
+    )
+    .classList.remove(
+      "show"
+    );
+
+}
+
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    e=>{
+
+      if(
+        e.target.id ===
+        "modal"
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   CONSTELLATION REVEAL
+========================================================= */
+
+const constellation =
+  document.getElementById(
+    "constellation"
+  );
+
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(
+          entry.isIntersecting
+        ){
+
+          constellation
+            .classList
+            .add("show");
+
+        }
+
+      });
+
+    },
+
+    {
+      threshold:.35
+    }
+  );
+
+
+observer.observe(
+  constellation
+);
+
+
+/* =========================================================
+   HIDDEN STAR MESSAGES
+========================================================= */
+
+const notePop =
+  document.getElementById(
+    "notePop"
+  );
+
+
+document
+  .querySelectorAll(
+    ".hidden-note"
+  )
+  .forEach(star=>{
+
+    star.addEventListener(
+      "click",
+      ()=>{
+
+        notePop.textContent =
+          star.dataset.note;
+
+        notePop.classList.add(
+          "show"
+        );
+
+        clearTimeout(
+          window.noteTimer
+        );
+
+        window.noteTimer =
+          setTimeout(
+            ()=>{
+              notePop.classList.remove(
+                "show"
+              );
+            },
+            3000
+          );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   FINAL BUTTON
+========================================================= */
+
+document
+  .getElementById("finalBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      this.textContent =
+        "okay. one moment at a time. ✦";
+
+      this.disabled=true;
+
+    }
+  );
+
+
+/* =========================================================
+   SOFT AMBIENT AUDIO
+========================================================= */
+
+let audioContext=null;
+let audioPlaying=false;
+
+
+document
+  .getElementById("music")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      if(!audioContext){
+
+        audioContext =
+          new(
+            window.AudioContext ||
+            window.webkitAudioContext
+          )();
+
+
+        const master =
+          audioContext.createGain();
+
+        master.gain.value=.012;
+
+        master.connect(
+          audioContext.destination
+        );
+
+
+        [
+          110,
+          164.81,
+          220,
+          329.63
+        ]
+        .forEach(
+          (frequency,i)=>{
+
+            const oscillator =
+              audioContext
+              .createOscillator();
+
+            oscillator.type="sine";
+
+            oscillator.frequency.value =
+              frequency;
+
+
+            const gain =
+              audioContext
+              .createGain();
+
+            gain.gain.value =
+              i===0 ? .7 : .35;
+
+
+            oscillator.connect(
+              gain
+            );
+
+            gain.connect(
+              master
+            );
+
+            oscillator.start();
+
+          }
+        );
+
+
+        audioPlaying=true;
+
+        document
+          .getElementById("music")
+          .textContent="♫";
+
+        return;
+      }
+
+
+      if(audioPlaying){
+
+        audioContext.suspend();
+
+        audioPlaying=false;
+
+        document
+          .getElementById("music")
+          .textContent="♪";
+
+      }
+
+      else{
+
+        audioContext.resume();
+
+        audioPlaying=true;
+
+        document
+          .getElementById("music")
+          .textContent="♫";
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
